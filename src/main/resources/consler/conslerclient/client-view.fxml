@@ -1,16 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="consler.conslerclient.ui.HelloController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
+<BorderPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="consler.conslerclient.ui.ClientController">
+    <bottom>
+        <HBox alignment="BOTTOM_LEFT" spacing="15.0" BorderPane.alignment="BOTTOM_LEFT">
+            <Button onMouseClicked="#launchButtonClicked" style="-fx-pref-width: 330; -fx-pref-height: 110; -fx-font-size: 40;" text="Launch" />
+            <ChoiceBox fx:id="launchChoiceBox" style="-fx-pref-width: 400; -fx-pref-height: 110; -fx-font-size: 30;" />
+        </HBox>
+    </bottom>
 
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
-</VBox>
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu text="Instance">
+            <items>
+              <MenuItem text="New" />
+              <MenuItem text="Manage" />
+            </items>
+          </Menu>
+          <Menu text="Help">
+            <items>
+              <MenuItem text="GitHub page" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+</BorderPane>

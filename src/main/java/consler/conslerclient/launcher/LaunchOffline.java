@@ -1,4 +1,5 @@
 package consler.conslerclient.launcher;
 
-public class LaunchOffline {
+public class LaunchOffline
+{
 }

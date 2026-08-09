@@ -1,16 +1,28 @@
 package consler.conslerclient.ui;
 
+import consler.conslerclient.utils.Versions;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.fxml.Initializable;
+import javafx.scene.control.ChoiceBox;
 
-public class HelloController
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class ClientController implements Initializable
 {
     @FXML
-    private Label welcomeText;
+    private ChoiceBox<String> launchChoiceBox;
+    @Override
+    public void initialize(URL location, ResourceBundle resources)
+    {
+        launchChoiceBox.setItems(Versions.list());
+
+    }
 
     @FXML
-    protected void onHelloButtonClick()
+    void launchButtonClicked()
     {
-        welcomeText.setText("Welcome to JavaFX Application!");
+
     }
+
 }
