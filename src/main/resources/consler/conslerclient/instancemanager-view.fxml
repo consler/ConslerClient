@@ -22,7 +22,7 @@
                     </padding>
                     <children>
                         <Button maxWidth="Infinity" text="New Instance" onAction="#newInstanceButtonClicked" />
-                        <Button maxWidth="Infinity" text="Open Instance Folder" onAction="#openFolderButtonClicked" />
+                        <Button maxWidth="Infinity" text="Open Instances Folder" onAction="#openFolderButtonClicked" />
                     </children>
                 </VBox>
 

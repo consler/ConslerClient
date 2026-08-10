@@ -6,6 +6,7 @@ import java.io.File;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import static consler.conslerclient.Main.APPDATA_DIR;
 
@@ -18,7 +19,7 @@ public class InstanceInfo
 
         saver.set("version", version);
         saver.set("modLoader", modLoader);
-        saver.set("loaderVersion", loaderVersion);
+        saver.set("loaderVersion", Objects.requireNonNullElse(loaderVersion, "null"));
         saver.save();
     }
 

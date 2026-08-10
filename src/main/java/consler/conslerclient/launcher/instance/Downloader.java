@@ -1,5 +1,6 @@
 package consler.conslerclient.launcher.instance;
 
+import consler.conslerclient.launcher.Launcher;
 import fr.flowarg.flowupdater.FlowUpdater;
 import fr.flowarg.flowupdater.versions.VanillaVersion;
 import fr.flowarg.flowupdater.versions.fabric.FabricVersion;
@@ -8,15 +9,15 @@ import fr.flowarg.flowupdater.versions.forge.ForgeVersion;
 import fr.flowarg.flowupdater.versions.forge.ForgeVersionBuilder;
 import fr.flowarg.flowupdater.versions.neoforge.NeoForgeVersion;
 import fr.flowarg.flowupdater.versions.neoforge.NeoForgeVersionBuilder;
-import fr.theshark34.openlauncherlib.minecraft.util.GameDirGenerator;
 
+import java.io.File;
 import java.nio.file.Path;
 
 public class Downloader
 {
     public static void download(String name, String version, String modLoader, String loaderVersion) throws Exception
     {
-        Path gameDirPath = GameDirGenerator.createGameDir(name, true);
+        Path gameDirPath = new File(Launcher.instanceDir, name).toPath();
 
         VanillaVersion vv = new VanillaVersion.VanillaVersionBuilder().withName(version).build();
         FlowUpdater.FlowUpdaterBuilder fub = new FlowUpdater.FlowUpdaterBuilder().withVanillaVersion(vv);

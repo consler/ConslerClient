@@ -28,7 +28,7 @@
         </Menu>
           <Menu text="Help">
             <items>
-              <MenuItem text="GitHub page" onAction="#githubPageButtonClicked"/>
+              <MenuItem text="GitHub Page" onAction="#githubPageButtonClicked"/>
             </items>
           </Menu>
         </menus>

@@ -3,7 +3,6 @@ package consler.conslerclient.ui.instance.manager;
 import consler.conslerclient.launcher.Launcher;
 import consler.conslerclient.ui.client.ClientController;
 import consler.conslerclient.ui.instance.create.NewInstanceApplication;
-import dev.dirs.BaseDirectories;
 import javafx.application.HostServices;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -19,6 +18,13 @@ import static consler.conslerclient.Main.APPDATA_DIR;
 
 public class InstanceManagerController implements Initializable
 {
+    private static InstanceManagerController instance;
+
+    public static InstanceManagerController getInstance()
+    {
+        return instance;
+    }
+
     public static HostServices hostServices;
 
     @FXML
@@ -31,8 +37,10 @@ public class InstanceManagerController implements Initializable
         setupContextMenu();
     }
 
-    private void loadInstances()
+    public void loadInstances()
     {
+        instance = this;
+
         instanceList.getItems().clear();
 
         if (APPDATA_DIR.exists() && APPDATA_DIR.isDirectory())
@@ -66,7 +74,10 @@ public class InstanceManagerController implements Initializable
             MenuItem deleteItem = new MenuItem("Delete");
             deleteItem.setOnAction(e -> deleteInstance(cell.getItem()));
 
-            contextMenu.getItems().addAll(launchItem, renameItem, deleteItem);
+            MenuItem openFolderItem = new MenuItem("Open Folder");
+            openFolderItem.setOnAction(e -> openInstanceFolder(cell.getItem()));
+
+            contextMenu.getItems().addAll(launchItem, renameItem, deleteItem, openFolderItem);
 
             cell.textProperty().bind(cell.itemProperty());
             cell.emptyProperty().addListener((obs, wasEmpty, isNowEmpty) -> {
@@ -95,7 +106,7 @@ public class InstanceManagerController implements Initializable
         result.ifPresent(newName ->
         {
             new File(APPDATA_DIR, oldName + ".properties").renameTo(new File(APPDATA_DIR, newName + ".properties"));
-            new File(BaseDirectories.get().dataDir, oldName).renameTo(new File(BaseDirectories.get().dataDir, newName));
+            new File(Launcher.instanceDir, oldName).renameTo(new File(Launcher.instanceDir, newName));
 
             refreshAllLists(newName);
         });
@@ -114,7 +125,7 @@ public class InstanceManagerController implements Initializable
             File propertiesFile = new File(APPDATA_DIR, name + ".properties");
             if (propertiesFile.exists()) propertiesFile.delete();
 
-            File gameDir = new File(BaseDirectories.get().dataDir, name);
+            File gameDir = new File(Launcher.instanceDir, name);
             deleteDirectory(gameDir);
 
             refreshAllLists(null);
@@ -138,6 +149,11 @@ public class InstanceManagerController implements Initializable
         }
     }
 
+    private void openInstanceFolder(String instanceName)
+    {
+        hostServices.showDocument(new File(Launcher.instanceDir, instanceName).getAbsolutePath());
+    }
+
     private void refreshAllLists(String instanceToSelect)
     {
         loadInstances();
@@ -156,14 +172,7 @@ public class InstanceManagerController implements Initializable
     @FXML
     void openFolderButtonClicked()
     {
-        String selected = instanceList.getSelectionModel().getSelectedItem();
-        if (selected == null) return;
-
-        File folder = new File(APPDATA_DIR, selected);
-
-        if (!folder.exists()) return;
-
-        hostServices.showDocument(folder.toURI().toString());
-
+        hostServices.showDocument(Launcher.instanceDir);
     }
+
 }

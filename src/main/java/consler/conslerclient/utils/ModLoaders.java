@@ -1,16 +1,15 @@
 package consler.conslerclient.utils;
 
-import consler.conslerclient.exceptions.FailedToLoadModVersionsException;
-import javafx.collections.ObservableList;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
+import consler.conslerclient.exceptions.FailedToLoadModVersionsException;
+import javafx.collections.ObservableList;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.InputStreamReader;
 import java.net.URI;
 import java.net.URL;

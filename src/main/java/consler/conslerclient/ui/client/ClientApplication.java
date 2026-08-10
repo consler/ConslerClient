@@ -6,9 +6,11 @@ import consler.conslerclient.ui.instance.manager.InstanceManagerController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class ClientApplication extends Application
 {
@@ -23,6 +25,7 @@ public class ClientApplication extends Application
         Scene scene = new Scene(fxmlLoader.load());
         stage.setMaximized(true);
         stage.setTitle("Consler Client");
+        stage.getIcons().add(new Image(Objects.requireNonNull(Main.class.getResourceAsStream("conslerpfp.jpg"))));
 
         ClientController.hostServices = getHostServices();
         InstanceManagerController.hostServices = getHostServices();

@@ -2,26 +2,23 @@ package consler.conslerclient.ui.instance.create;
 
 import consler.conslerclient.launcher.instance.Downloader;
 import consler.conslerclient.ui.client.ClientController;
+import consler.conslerclient.ui.instance.manager.InstanceManagerController;
 import consler.conslerclient.utils.ModLoaders;
 import consler.conslerclient.utils.Versions;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 
 import java.net.URL;
 import java.util.Collections;
-import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.concurrent.CompletableFuture;
 
 public class NewInstanceController implements Initializable
 {
+
     @FXML
     private TextField nameField;
 
@@ -61,7 +58,9 @@ public class NewInstanceController implements Initializable
     @FXML
     private CheckBox filterExperiments;
 
-    @Override
+
+
+        @Override
     public void initialize(URL location, ResourceBundle resources)
     {
         // Add listeners to checkboxes to trigger list updates
@@ -166,6 +165,10 @@ public class NewInstanceController implements Initializable
         if (ClientController.getInstance() != null)
         {
             ClientController.getInstance().loadInstances(instanceName);
+        }
+        if (InstanceManagerController.getInstance() != null)
+        {
+            InstanceManagerController.getInstance().loadInstances();
         }
 
         NewInstanceApplication.close();

@@ -1,6 +1,5 @@
 package consler.conslerclient.ui.instance.create;
 
-import atlantafx.base.theme.PrimerLight;
 import consler.conslerclient.Main;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

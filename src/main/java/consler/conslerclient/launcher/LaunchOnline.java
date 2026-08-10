@@ -3,12 +3,12 @@ package consler.conslerclient.launcher;
 import consler.conslerclient.exceptions.FailedToLaunchMinecraftException;
 import consler.conslerclient.launcher.auth.Authorization;
 import fr.flowarg.openlauncherlib.NoFramework;
-import fr.theshark34.openlauncherlib.minecraft.*;
+import fr.theshark34.openlauncherlib.minecraft.AuthInfos;
+import fr.theshark34.openlauncherlib.minecraft.GameFolder;
 import fr.theshark34.openlauncherlib.minecraft.util.GameDirGenerator;
 
 public class LaunchOnline
 {
-    private static AuthInfos sessionAuth;
 
     public static void launch(String name, String version, String modLoader, String loaderVersion)
     {
@@ -17,7 +17,7 @@ public class LaunchOnline
         {
             try
             {
-                sessionAuth = Authorization.authorize();
+                AuthInfos sessionAuth = Authorization.authorize();
 
                 NoFramework noFramework = new NoFramework(GameDirGenerator.createGameDir(name, true), sessionAuth, GameFolder.FLOW_UPDATER);
 
