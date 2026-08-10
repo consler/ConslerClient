@@ -5,7 +5,9 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
@@ -14,7 +16,7 @@
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="consler.conslerclient.ui.instance.create.NewInstanceController"
-            prefHeight="400" prefWidth="800">
+            prefHeight="450" prefWidth="800">
     <children>
         <VBox spacing="20" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
             <padding>
@@ -22,20 +24,13 @@
             </padding>
             <children>
 
+                <!-- Instance Name -->
                 <VBox spacing="5">
                     <children>
                         <Label text="Instance Name" />
                         <TextField fx:id="nameField" promptText="Enter instance name..." />
                     </children>
                 </VBox>
-
-                <VBox spacing="5">
-                    <children>
-                        <Label text="Mod Loader" />
-                        <ComboBox fx:id="modLoaderChoice" maxWidth="Infinity" promptText="Select Mod Loader..." />
-                    </children>
-                </VBox>
-
                 <VBox spacing="5">
                     <children>
                         <Label text="Minecraft Version" />
@@ -57,12 +52,38 @@
                     </children>
                 </VBox>
 
+                <VBox spacing="10">
+                    <children>
+                        <Label text="Mod Loader" />
+
+                        <HBox spacing="20" alignment="CENTER_LEFT">
+                            <children>
+                                <RadioButton fx:id="loaderVanilla" text="Vanilla" selected="true">
+                                    <toggleGroup>
+                                        <ToggleGroup fx:id="modLoaderGroup" />
+                                    </toggleGroup>
+                                </RadioButton>
+                                <RadioButton fx:id="loaderFabric" text="Fabric" toggleGroup="$modLoaderGroup" />
+                                <RadioButton fx:id="loaderForge" text="Forge" toggleGroup="$modLoaderGroup" />
+                                <RadioButton fx:id="loaderNeoforge" text="NeoForge" toggleGroup="$modLoaderGroup" />
+                            </children>
+                        </HBox>
+
+                        <HBox spacing="10" alignment="CENTER_LEFT">
+                            <children>
+                                <Label text="Loader Version:" />
+                                <ComboBox fx:id="modLoaderVersionChoice" prefWidth="250" promptText="Select Loader Version..." disable="true" />
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+
                 <Region VBox.vgrow="ALWAYS" />
 
                 <HBox spacing="10" alignment="BOTTOM_RIGHT">
                     <children>
                         <Button fx:id="cancelButton" text="Cancel" onAction="#cancelButtonClicked"/>
-                        <Button fx:id="createButton" text="Create Instance" defaultButton="true" />
+                        <Button fx:id="createButton" text="Create Instance" defaultButton="true" onAction="#createButtonClicked"/>
                     </children>
                 </HBox>
 

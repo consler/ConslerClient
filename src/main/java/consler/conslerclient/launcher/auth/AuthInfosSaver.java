@@ -4,15 +4,18 @@ import fr.theshark34.openlauncherlib.minecraft.AuthInfos;
 import fr.theshark34.openlauncherlib.util.Saver;
 
 import java.io.File;
+import java.nio.file.Path;
+
+import static consler.conslerclient.Main.APPDATA_DIR;
 
 public class AuthInfosSaver
 {
-    private static final File APPDATA_DIR = new File(System.getenv("HOME"), ".ConslerClient");
-    private static final File CONFIG_FILE = new File(APPDATA_DIR, "authinfos.txt");
+
+    private static final Path CONFIG_FILE = new File(APPDATA_DIR, "authinfos.txt").toPath();
 
     private static final Saver SAVER = new Saver(CONFIG_FILE);
 
-    private static void saveAuthInfos(AuthInfos authInfos)
+    public static void saveAuthInfos(AuthInfos authInfos)
     {
         if (!APPDATA_DIR.exists())
         {
@@ -24,10 +27,8 @@ public class AuthInfosSaver
         SAVER.set("uuid", authInfos.getUuid());
     }
 
-    private static AuthInfos loadSavedSession()
+    public static AuthInfos loadSavedSession()
     {
-        if (!CONFIG_FILE.exists()) return null;
-
         String name = SAVER.get("name");
         String token = SAVER.get("token");
         String uuid = SAVER.get("uuid");

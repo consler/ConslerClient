@@ -23,7 +23,7 @@
           </Menu>
           <Menu text="Settings">
           <items>
-            <MenuItem text="Open" />
+            <MenuItem text="Authorize" onAction="#authorizeButtonClicked"/>
           </items>
         </Menu>
           <Menu text="Help">

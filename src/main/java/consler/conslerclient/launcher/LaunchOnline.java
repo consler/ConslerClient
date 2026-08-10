@@ -1,41 +1,34 @@
 package consler.conslerclient.launcher;
 
 import consler.conslerclient.exceptions.FailedToLaunchMinecraftException;
-import consler.conslerclient.launcher.auth.Authorizarion;
-import fr.flowarg.flowupdater.FlowUpdater;
-import fr.flowarg.flowupdater.versions.VanillaVersion;
+import consler.conslerclient.launcher.auth.Authorization;
 import fr.flowarg.openlauncherlib.NoFramework;
 import fr.theshark34.openlauncherlib.minecraft.*;
-
-import java.nio.file.Path;
+import fr.theshark34.openlauncherlib.minecraft.util.GameDirGenerator;
 
 public class LaunchOnline
 {
     private static AuthInfos sessionAuth;
 
-    public static void launch(String version)
+    public static void launch(String name, String version, String modLoader, String loaderVersion)
     {
 
         new Thread(() ->
         {
             try
             {
-                sessionAuth = Authorizarion.authorize();
+                sessionAuth = Authorization.authorize();
 
-                GameInfos infos = new GameInfos("Minecraft " + version, new GameVersion(version, GameType.V1_13_HIGHER_VANILLA), new GameTweak[]{});
+                NoFramework noFramework = new NoFramework(GameDirGenerator.createGameDir(name, true), sessionAuth, GameFolder.FLOW_UPDATER);
 
-                Path gameDirPath = infos.getGameDir().toFile().toPath();
-
-                VanillaVersion vv = new VanillaVersion.VanillaVersionBuilder().withName(version).build();
-                FlowUpdater fu = new FlowUpdater.FlowUpdaterBuilder().withVanillaVersion(vv).build();
-                fu.update(gameDirPath);
-
-                NoFramework noFramework = new NoFramework(gameDirPath, sessionAuth, GameFolder.FLOW_UPDATER);
-
-                noFramework.launch(version, version, NoFramework.ModLoader.VANILLA);
-
-                System.exit(0);
-
+                switch(modLoader)
+                {
+                    case "Vanilla" -> noFramework.launch(version, loaderVersion, NoFramework.ModLoader.VANILLA);
+                    case "Fabric" -> noFramework.launch(version, loaderVersion, NoFramework.ModLoader.FABRIC);
+                    case "Forge" -> noFramework.launch(version, loaderVersion, NoFramework.ModLoader.FORGE);
+                    case "Neoforge" -> noFramework.launch(version, loaderVersion, NoFramework.ModLoader.NEO_FORGE);
+                    default -> throw new FailedToLaunchMinecraftException(modLoader + " is not a mod loader!");
+                }
             }
             catch (Exception e)
             {

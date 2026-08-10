@@ -11,6 +11,7 @@ module consler.conslerclient.conslerclient
     requires atlantafx.base;
     requires com.google.gson;
     requires openauth;
+    requires dev.dirs;
 
     opens consler.conslerclient to javafx.fxml;
     exports consler.conslerclient;

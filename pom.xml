@@ -27,6 +27,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>dev.dirs</groupId>
+            <artifactId>directories</artifactId>
+            <version>26</version>
+        </dependency>
+        <dependency>
             <groupId>fr.flowarg</groupId>
             <artifactId>openlauncherlib</artifactId>
             <version>3.2.11</version>
