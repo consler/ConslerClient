@@ -1,11 +1,11 @@
 package consler.conslerclient;
 
-import consler.conslerclient.ui.ClientApplication;
+import consler.conslerclient.ui.client.ClientApplication;
 import javafx.application.Application;
 
 public class Main
 {
-    public static void main(String[] args)
+    static void main(String[] args)
     {
         Application.launch(ClientApplication.class, args);
     }

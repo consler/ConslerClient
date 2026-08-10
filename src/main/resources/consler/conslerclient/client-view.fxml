@@ -4,10 +4,10 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="consler.conslerclient.ui.ClientController">
+<BorderPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="consler.conslerclient.ui.client.ClientController">
     <bottom>
-        <HBox alignment="BOTTOM_LEFT" spacing="15.0" BorderPane.alignment="BOTTOM_LEFT">
-            <Button onMouseClicked="#launchButtonClicked" style="-fx-pref-width: 330; -fx-pref-height: 110; -fx-font-size: 40;" text="Launch" />
+        <HBox alignment="BOTTOM_LEFT" spacing="15" BorderPane.alignment="BOTTOM_LEFT">
+            <Button onMouseClicked="#launchButtonClicked" style="-fx-pref-width: 330; -fx-pref-height: 110; -fx-font-size: 40;" text="Launch"></Button>
             <ChoiceBox fx:id="launchChoiceBox" style="-fx-pref-width: 400; -fx-pref-height: 110; -fx-font-size: 30;" />
         </HBox>
     </bottom>
@@ -15,18 +15,26 @@
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
-          <Menu text="Instance">
+          <Menu text="Instances">
             <items>
-              <MenuItem text="New" />
-              <MenuItem text="Manage" />
+              <MenuItem onAction="#newInstanceButtonClicked" text="New" />
+              <MenuItem onAction="#instanceManageButtonClicked" text="Manage" />
             </items>
           </Menu>
+          <Menu text="Settings">
+          <items>
+            <MenuItem text="Open" />
+          </items>
+        </Menu>
           <Menu text="Help">
             <items>
-              <MenuItem text="GitHub page" />
+              <MenuItem text="GitHub page" onAction="#githubPageButtonClicked"/>
             </items>
           </Menu>
         </menus>
       </MenuBar>
    </top>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
 </BorderPane>

@@ -18,7 +18,7 @@ public class Versions
 
     public static ObservableList<String> list()
     {
-        ObservableList<String> version_names = observableArrayList();
+        ObservableList<String> versionNames = observableArrayList();
         try
         {
             URL url = URI.create(MANIFEST_URL).toURL();
@@ -29,7 +29,7 @@ public class Versions
             for (JsonElement version : versions)
             {
                 String name = version.getAsJsonObject().get("id").getAsString();
-                version_names.add(name);
+                versionNames.add(name);
             }
         }
         catch (Exception e)
@@ -37,6 +37,6 @@ public class Versions
             throw new RuntimeException(e);
         }
 
-        return version_names;
+        return versionNames;
     }
 }
