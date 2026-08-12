@@ -13,7 +13,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junit.version>5.12.1</junit.version>
         <javafx.version>25.0.4</javafx.version>
-        <main.class>consler.conslerclient.Launcher</main.class>
+        <main.class>consler.conslerclient.Main</main.class>
     </properties>
 
     <repositories>
